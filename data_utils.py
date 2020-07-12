@@ -520,52 +520,7 @@ class Comp_Relation_C_Processor_For_Graph_Attention_Network(object):
                                                                 label_list=None,
                                                                 output_mode=None,
                                                                 mode=None,  # train/dev/test
-                                                                # -----------------------
-                                                                pad_on_left=False,
-                                                                pad_token=0,
-                                                                pad_token_segment_id=0,
-                                                                mask_padding_with_zero=True,
-                                                                # -------- some extra parameter -------
-                                                                cls_token_at_end=False,
-                                                                cls_token='[CLS]',
-                                                                cls_token_segment_id=0,
-                                                                sep_token='[SEP]',
-                                                                sep_token_extra=False,
-                                                                sequence_a_segment_id=0,
-                                                                sequence_b_segment_id=1,
                                                                 ):
-        """
-        different from method "convert_examples_to_features_from_masked_sent_customized" that
-        1) treat each sentence as a single independent graph
-        2) make the word embedding static, the graph model cannot fine tune it
-        3) there is no global word vocabulary, each sentence only have its own small word vocabulary
-
-        This method will
-        1) Based on batch size, concatenate each sentence into a big graph, formed by each disconnected subgraph,
-        each graph is formed by one sentence
-        2) word embedding could be fine tuned during training
-        3) there is a global word vocabulary, so that information could be shared between sentences
-
-          args=args,
-          model_class=model_class,
-          tokenizer_class=tokenizer_class,
-          examples=examples,
-          max_length=args.max_seq_length,
-          label_list=label_list,
-          output_mode=output_mode,
-          mode=mode)
-
-        The masked object sent without any query give good result.
-
-        1. First, load the pretrained bert model (trained with the mask object sent, to generate token embedding)
-        2. feed the embedding into GAT and generate result
-
-        Loads a data file into a list of `InputBatch`s
-            `cls_token_at_end` define the location of the CLS token:
-                - False (Default, BERT/XLM pattern): [CLS] + A + [SEP] + B + [SEP]
-                - True (XLNet/GPT pattern): A + [SEP] + B + [SEP] + [CLS]
-            `cls_token_segment_id` define the segment id associated to the CLS token (0 for BERT, 2 for XLNet)
-        """
 
         label_to_i_map = {label: i for i, label in enumerate(label_list)}
         # label list is always the same order, so do not need to save
