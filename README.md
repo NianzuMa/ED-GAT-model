@@ -1,3 +1,10 @@
+# Entity-Aware Dependency-Based Deep Graph Attention Network for Comparative Preference Classification
+
+* This repository is the original implementation of ACL 2020 Paper: [Entity-Aware Dependency-Based Deep Graph Attention Network for Comparative Preference Classification](https://aclanthology.org/2020.acl-main.512/)
+* Please contact [@NianzuMa](https://github.com/NianzuMa) for questions and suggestions.
+* For code running issues, please submit to the Github issues of this repository.
+
+
 ## Set up on Ubuntu Linux 18.04
 
 ```
